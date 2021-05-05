@@ -21,8 +21,6 @@ import i18n from './lang'
 import './permission'
 // 全局图标
 import './icons'
-// 全局 Mock 接口
-import './mock'
 
 Vue.use(ElementUI, {
   size: 'medium',
@@ -33,10 +31,12 @@ Vue.use(Notification)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+let vm = new Vue({
   el: '#app',
   router,
   store,
   i18n,
   render: h => h(App)
 })
+
+export default vm

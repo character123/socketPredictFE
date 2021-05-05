@@ -50,17 +50,7 @@ export default {
     }),
     @confirm('退出系统？')
     logout() {
-      const loading = this.$loading({
-        lock: true
-      })
-      this.userLogout().then(() => {
-        // 为了重新实例化vue-router对象 避免bug
-        location.reload()
-      }).catch(err => {
-        console.log(err)
-      }).finally(() => {
-        loading.close()
-      })
+      this.$router.push('/login')
     }
   }
 }

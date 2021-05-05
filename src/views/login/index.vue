@@ -13,15 +13,15 @@
       <el-form :rules="rules" :model="loginForm" ref="loginForm" label-width="80px">
         <el-form-item :label="$t('login.account')" prop="username" style="position:relative">
           <el-input type="text" v-model="loginForm.username"
-            @keyup.enter.native="goToPwdInput"
+            @keyup.enter.native="goTopasswordInput"
             maxlength="20"/>
           <span class="svg-container svg-container_user">
             <svg-icon icon-class="user" />
           </span>
         </el-form-item>
-        <el-form-item :label="$t('login.password')" prop="pwd">
-          <el-input ref="pwd" type="password"
-            v-model="loginForm.pwd"
+        <el-form-item :label="$t('login.password')" prop="password">
+          <el-input ref="password" type="password"
+            v-model="loginForm.password"
             @keyup.enter.native="onLogin"
             maxlength="20" />
           <span class="svg-container svg-container_password">
@@ -31,7 +31,7 @@
         <el-form-item :label="$t('login.remember')" label-width="80px">
           <el-switch v-model="remember"></el-switch>
         </el-form-item>
-        <el-button type="primary" @click="onLogin('loginForm')" :loading="loading">{{$t('login.login')}}</el-button>
+        <el-button type="primary" @click="onLogin('loginForm')">{{$t('login.login')}}</el-button>
       </el-form>
     </el-card>
     <!-- particles.js container -->
@@ -58,8 +58,8 @@ export default {
         callback()
       }
     }
-    // pwd 验证
-    const validatePwd = (rule, value, callback) => {
+    // password 验证
+    const validatepassword = (rule, value, callback) => {
       if (value.length < 6) {
         callback(new Error('密码不能小于6位'))
       } else {
@@ -71,7 +71,7 @@ export default {
       toggleParticles: false,
       loginForm: {
         username: '',
-        pwd: ''
+          password: ''
       },
       remember: false,
       loading: false,
@@ -81,10 +81,10 @@ export default {
           { required: true, trigger: 'blur', validator: validateUsername },
           { required: true, trigger: 'change', validator: validateUsername }
         ],
-        pwd: [
+          password: [
           { required: true, message: '请输入密码', trigger: 'blur' },
-          { required: true, trigger: 'blur', validator: validatePwd },
-          { required: true, trigger: 'change', validator: validatePwd }
+          { required: true, trigger: 'blur', validator: validatepassword },
+          { required: true, trigger: 'change', validator: validatepassword }
         ]
       }
     }
@@ -93,10 +93,10 @@ export default {
     // 初始化时读取localStorage用户信息
     if (loadFromLocal('remember', false)) {
       this.loginForm.username = loadFromLocal('username', '')
-      this.loginForm.pwd = loadFromLocal('password', '')
+      this.loginForm.password = loadFromLocal('password', '')
     } else {
       this.loginForm.username = ''
-      this.loginForm.pwd = ''
+      this.loginForm.password = ''
     }
   },
   methods: {
@@ -104,12 +104,12 @@ export default {
       'login'
     ]),
     // 用户名输入框回车后切换到密码输入框
-    goToPwdInput() {
-      this.$refs.pwd.$el.getElementsByTagName('input')[0].focus()
+    goTopasswordInput() {
+      this.$refs.password.$el.getElementsByTagName('input')[0].focus()
     },
     // 登录操作
     onLogin() {
-      this.$refs.pwd.$el.getElementsByTagName('input')[0].blur()
+      this.$refs.password.$el.getElementsByTagName('input')[0].blur()
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
@@ -117,7 +117,7 @@ export default {
             // 保存账号
             if (this.remember) {
               saveToLocal('username', this.loginForm.username)
-              saveToLocal('password', this.loginForm.pwd)
+              saveToLocal('password', this.loginForm.password)
               saveToLocal('remember', true)
             } else {
               saveToLocal('username', '')

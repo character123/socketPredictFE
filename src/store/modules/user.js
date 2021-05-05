@@ -1,5 +1,6 @@
-import { login, userInfo, logout } from '@/api/login'
+import { login, userInfo, logout, stockList } from '@/api/apis'
 import { getToken, setToken, removeToken } from '@/common/auth'
+import vm from '../../main'
 
 const SET_ACCOUNT = 'SET_ACCOUNT'
 const SET_TOKEN = 'SET_TOKEN'
@@ -62,32 +63,22 @@ const user = {
       return new Promise((resolve, reject) => {
         login(userInfo).then(resp => {
           let data = resp.data
-          setToken(data.token)
-          commit(SET_TOKEN, data.token)
-          // commit(SET_NAME, data.name)
-          // commit(SET_AGE, data.age)
-          // commit(SET_AVATAR, data.avatar)
-          // commit(SET_PERMISSIONS, data.permissions)
-          return resolve()
-        }).catch(err => {
-          return reject(err)
-        })
-      })
-    },
-    // 拉取用户信息
-    pullUserInfo({ commit }) {
-      return new Promise((resolve, reject) => {
-        userInfo().then(resp => {
-          let data = resp.data
-          commit(SET_ACCOUNT, data.account)
-          commit(SET_NAME, data.name)
-          commit(SET_AGE, data.age)
-          commit(SET_SEX, data.sex)
-          commit(SET_AVATAR, data.avatar)
-          commit(SET_PERMISSIONS, data.permissions)
-          commit(SET_TYPE, data.type)
-          commit(SET_DESC, data.desc)
-          return resolve(data)
+          console.log('登录信息')
+          console.log(data)
+          if(data.code === 0) {
+            console.log('code校验成功')
+            vm.$router.push('/home/index')
+            vm.$message({
+              message: '登录成功',
+              type: 'success'
+            })
+          }else {
+            console.log('code校验失败')
+            vm.$message({
+              message: data.msg,
+              type: 'warning'
+            })
+          }
         }).catch(err => {
           return reject(err)
         })

@@ -10,19 +10,19 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api/getmoviepiaofang': {
-        target: 'http://dianying.nuomi.com/movie/boxrefresh',
+      '/backApi': {
+        target: 'http://159.75.214.27:80',
         secure: false,
         changeOrigin: true,
         pathRewrite: {
-          '^/api/getmoviepiaofang': ''
+          '^/backApi': ''
         }
       }
     },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8087, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,

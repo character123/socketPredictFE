@@ -33,19 +33,22 @@ export const constantRouterMap = [
     }
   },
   {
+    path: '/',
+    redirect: 'login'
+  },
+  {
     path: '/404',
     component: () => import('@/views/error-page/404'),
     hidden: true
   },
   {
-    path: '/',
+    path: '/home',
     // hidden: true,
     component: Layout,
-    redirect: '/home',
     children: [
       {
-        path: 'home',
-        name: 'home',
+        path: 'index',
+        name: 'index',
         component: () => import('@/views/homepage'),
         meta: {icon: 's-home', title: '股价预测系统首页'}
       }
