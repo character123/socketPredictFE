@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       socketCode: '平安银行(SZ000001)',
-      finishPrice: '18.22',
+      finishPrice: '',
       stockList: [],
       option2Data: [],
       option: {}
@@ -73,6 +73,7 @@ export default {
       minuteData({stock_code: result}).then(res => {
         if(res.data.code === 0) {
           this.option2Data = res.data.data.items
+          this.finishPrice = res.data.data.predict_close
           this.option = {
             dataset: {
               source: this.option2Data
