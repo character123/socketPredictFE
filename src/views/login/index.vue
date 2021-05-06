@@ -135,13 +135,6 @@ export default {
     },
     accountTip() {
       this.$notify({
-        title: '账号：admin',
-        dangerouslyUseHTMLString: true,
-        message: '<strong>密码：<i>123456</i></strong>',
-        type: 'success',
-        position: 'bottom-left'
-      })
-      this.$notify({
         title: '账号：root',
         dangerouslyUseHTMLString: true,
         message: '<strong>密码：<i>123456</i></strong>',

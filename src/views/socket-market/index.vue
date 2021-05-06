@@ -35,9 +35,93 @@
               style="width: 1500px;height: 500px; overflow: auto;"
               height="500"
               :row-class-name="tableRowClassName">
-          <el-table-column v-for="(item, index) in props" :key="item"
-                  :prop="item"
-                  :label="headers[index]">
+          <el-table-column
+                  prop="date"
+                  label="日期"
+                >
+          </el-table-column>
+          <el-table-column
+                  prop="open"
+                  label="开盘价"
+          >
+              <template slot-scope="scope">
+                  <div v-if="scope.row.open >= scope.row.yesterday" class="red-font">
+                      {{scope.row.open }}
+                  </div>
+                  <div v-else class="green-font">
+                      {{scope.row.open }}
+                  </div>
+              </template>
+          </el-table-column>
+          <el-table-column
+                  prop="highest"
+                  label="最高价"
+          >
+              <template slot-scope="scope">
+                  <div v-if="scope.row.highest >= scope.row.yesterday" class="red-font">
+                      {{scope.row.highest }}
+                  </div>
+                  <div v-else class="green-font">
+                      {{scope.row.highest }}
+                  </div>
+              </template>
+          </el-table-column>
+          <el-table-column
+                  prop="lowest"
+                  label="最低价"
+          >
+              <template slot-scope="scope">
+                  <div v-if="scope.row.lowest >= scope.row.yesterday" class="red-font">
+                      {{scope.row.lowest }}
+                  </div>
+                  <div v-else class="green-font">
+                      {{scope.row.lowest }}
+                  </div>
+              </template>
+          </el-table-column>
+          <el-table-column
+                  prop="close"
+                  label="收盘价"
+          >
+              <template slot-scope="scope">
+                  <div v-if="scope.row.close >= scope.row.yesterday" class="red-font">
+                      {{scope.row.close }}
+                  </div>
+                  <div v-else class="green-font">
+                      {{scope.row.close }}
+                  </div>
+              </template>
+          </el-table-column>
+          <el-table-column
+                  prop="yesterday"
+                  label="昨收价"
+          >
+          </el-table-column>
+          <el-table-column
+                  prop="change"
+                  label="涨跌幅（%）"
+          >
+              <template slot-scope="scope">
+                  <div v-if="scope.row.change > 0" class="red-font">
+                      {{scope.row.change }}
+                  </div>
+                  <div v-else-if="scope.row.change < 0" class="green-font">
+                      {{scope.row.change }}
+                  </div>
+                  <div v-else>
+                      {{scope.row.change }}
+                  </div>
+              </template>
+          </el-table-column>
+          <el-table-column
+                  prop="volume"
+                  label="成交量（手）"
+          >
+          </el-table-column>
+          <el-table-column
+                  prop="turnover"
+                  label="成交额（千元）"
+          >
           </el-table-column>
       </el-table>
   </div>
@@ -140,6 +224,14 @@ export default {
     .search-input {
         width: 150px;
         height: 30px;
+    }
+
+    .red-font{
+        color: red;
+    }
+
+    .green-font {
+        color: green;
     }
 
 </style>

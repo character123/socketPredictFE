@@ -11,9 +11,9 @@
       <div class="avatar-container">
         <el-dropdown trigger="click">
           <div class="avatar-wrapper">
-            <img class="user-avatar" :src="avatar">
+            <img class="user-avatar" src="../../static/image/avatar/6.jpeg">
             <div class="username-wrapper">
-              <span class="user-name">{{name}}</span>
+              <span class="user-name">{{name ? name: 'root'}}</span>
               <i class="el-icon-caret-bottom"></i>
             </div>
           </div>
