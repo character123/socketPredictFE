@@ -14,7 +14,7 @@
                     </el-select>
                 </div>
                 <div class="right">
-                    明日收盘价约为: <p style="color: red;display: inline">{{this.finishPrice}}</p>￥
+                    明日收盘价约为: <p style="color: red;display: inline">{{this.finishPrice}}￥</p>
                 </div>
             </div>
 
