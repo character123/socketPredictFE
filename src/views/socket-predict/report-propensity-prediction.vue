@@ -27,7 +27,7 @@ export default {
       richMaxLength: 800,
       richCurrentLength: 0,
       ans: '暂无数据',
-      inputsSize: { minRows: 25, maxRows: 25 }
+      inputsSize: { minRows: 22, maxRows: 22 }
     }
   },
   watch: {

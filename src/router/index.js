@@ -111,6 +111,40 @@ export const constantRouterMap = [
         meta: {icon: 'svg-type', title: '股票预测'}
       }
     ]
+  },
+  {
+    path: '/user-center',
+    component: Layout,
+    meta: {
+      icon: 'question',
+      title: '个人中心'
+    },
+    redirect: '/socket-market/index',
+    children: [
+      {
+        path: 'index',
+        name: 'socketMarket',
+        component: () => import('@/views/socket-market/index'),
+        meta: {icon: 'guide', title: '个人中心'}
+      }
+    ]
+  },
+  {
+    path: '/concat',
+    component: Layout,
+    meta: {
+      icon: 'question',
+      title: '联系我们'
+    },
+    redirect: '/socket-market/index',
+    children: [
+      {
+        path: 'index',
+        name: 'socketMarket',
+        component: () => import('@/views/socket-market/index'),
+        meta: {icon: 'guide', title: '联系我们'}
+      }
+    ]
   }
 ]
 
