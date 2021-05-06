@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { textPrediction } from '@/api/apis'
 
 export default {
   name: 'report-propensity-prediction',
@@ -25,7 +26,7 @@ export default {
       content: '',
       richMaxLength: 800,
       richCurrentLength: 0,
-      ans: '0.69',
+      ans: '暂无数据',
       inputsSize: { minRows: 25, maxRows: 25 }
     }
   },
@@ -34,7 +35,14 @@ export default {
   },
   methods: {
     getAns() {
-
+      textPrediction(this.content).then(res => {
+        if(res.data.code === 0) {
+          this.ans = res.data.data.Probability
+          this.$message('预测成功', 'success')
+        }else {
+          this.$message(res.data.msg, 'warning')
+        }
+      })
     }
 
   },
