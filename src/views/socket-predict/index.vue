@@ -274,7 +274,7 @@ export default {
     }
     .charts {
         width: 1200px;
-        height: 700px;
+        height: 900px;
         margin: auto;
         margin-top: 20px;
     }
