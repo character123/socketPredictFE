@@ -1,7 +1,6 @@
 <template>
 <div class="container">
-    首页
-    <img src="../../assets/images/indexBg2.jpeg" style="height: 700px;width: 100%">
+    <img src="../../assets/images/index.jpg" style="height: 700px;width: 100%">
 </div>
 </template>
 <script>
